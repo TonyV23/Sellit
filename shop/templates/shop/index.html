@@ -15,4 +15,21 @@
             </form>
         </div>
     </div>
+
+    <div class="row">
+        {% for product in product_object %}
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{{product.image}}" alt="" class="card-img-top">
+                <div class="card-body">
+                    <div class="card-title">{{product.title}}</div>
+                    <div style="color:orangered" class="card-text">{{product.price}}</div>
+                    <button class="btn btn-warning">View</button>
+                    <button class="btn btn-success">Add to card</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
