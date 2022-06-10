@@ -3,6 +3,8 @@ from .models import Product
 from django.core.paginator import Paginator
 
 # Create your views here.
+
+# for homepage
 def index(request):
     product_object = Product.objects.all() #selecting all products in database
     item_name = request.GET.get("item-name") #retrieve the content from the search bar (on name attribute)
@@ -15,3 +17,11 @@ def index(request):
     product_object = paginator.get_page(page) 
 
     return render(request, 'shop/index.html', {'product_object':product_object})
+
+# for product details
+def detail(request, myid): # myid to get each product
+    product_object = Product.objects.get(id=myid)
+    
+
+
+    return render(request, 'shop/detail.html', {'product':product_object})
