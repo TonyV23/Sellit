@@ -77,7 +77,20 @@
             
             // registering in localStorage our card
             localStorage.setItem('card', JSON.stringify(card));
-        })
+
+            // displaying card increasing level in nav bar
+            document.getElementById('card').innerHTML = "Card ("+Object.keys(card).length+")";
+        });
+
+        // Enable popovers everywhere
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+
+            // customizing text in hover's popover
+            document.getElementById('card').setAttribute('data-content', '<h5>All your orders list</h5>')
+        });
+
+        
     </script>
 
 {% endblock %}
