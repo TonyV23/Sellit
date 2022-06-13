@@ -25,7 +25,7 @@
                     <div class="card-title">{{product.title}}</div>
                     <div style="color:orangered" class="card-text">{{product.price}}</div>
                     <a href="{{ product.id }}" class="btn btn-warning">View</a>
-                    <button class="btn idClick btn-success">Add to card</button>
+                    <button id="{{ product.id }}" class="btn idClick btn-success">Add to card</button>
                 </div>
             </div>
         </div>
@@ -60,13 +60,23 @@
 
 {% block javascript %} 
     <script type="text/javascript">
-        if ( localStorage.getItem('card') == null) {
+        if ( localStorage.getItem('card') == null) { 
             var card = {};
         } else {
             card = JSON.parse(localStorage.getItem('card'));
         }
         $(document).on('click', '.idClick', function(){
-            console.log("add to card");
+            // to get id for each product in database and transform it into String
+            var item_id = this.id.toString();  
+            
+            // handling how much add to card btn was clicked by user
+            if (card[item_id] != undefined) { // undefined means that item_id (key) hasn't yet a value
+                card[item_id] = card[item_id] + 1;
+
+            }else { card[item_id] = 1; }
+            
+            // registering in localStorage our card
+            localStorage.setItem('card', JSON.stringify(card));
         })
     </script>
 
