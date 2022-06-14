@@ -22,7 +22,7 @@
             <div class="card">
                 <img src="{{product.image}}" alt="" class="card-img-top">
                 <div class="card-body">
-                    <div class="card-title">{{product.title}}</div>
+                    <div id="aa{{ product.id }}" class="card-title">{{product.title}}</div>
                     <div style="color:orangered" class="card-text">{{product.price}}</div>
                     <a href="{{ product.id }}" class="btn btn-warning">View</a>
                     <button id="{{ product.id }}" class="btn idClick btn-success">Add to card</button>
@@ -81,15 +81,22 @@
             // displaying card increasing level in nav bar
             document.getElementById('card').innerHTML = "Card ("+Object.keys(card).length+")";
         });
-
-        // Enable popovers everywhere
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-
-            // customizing text in hover's popover
-            document.getElementById('card').setAttribute('data-content', '<h5>See the list of your orders</h5>')
-        });
-
+     
+        displayAllOrdersByUser(card);
+        
+        function displayAllOrdersByUser(card){
+            var cardString = "";
+            cardString += "<h5>See the list of your orders</h5>";
+            var index = 1; // will count the number of product in popover
+            
+            for(var x in card){
+                cardString += index;
+                cardString += document.getElementById("aa"+x).innerHTML +"Quantity"+ card[x] + "</br>";
+                index +=1;
+            }
+            $('[data-toggle="popover"]').popover();
+            document.getElementById('card').setAttribute('data-content', cardString);
+        }
         
     </script>
 
