@@ -71,9 +71,14 @@
             
             // handling how much add to card btn was clicked by user
             if (card[item_id] != undefined) { // undefined means that item_id (key) hasn't yet a value
-                card[item_id] = card[item_id] + 1;
+                quantity = card[item_id][0] + 1;
+                card[item_id][0] = quantity;    
 
-            }else { card[item_id] = 1; }
+            }else { 
+                quantity = 1;
+                name = document.getElementById('aa'+item_id).innerHTML;
+                card[item_id] = [quantity, name];
+            }
             
             // registering in localStorage our card
             localStorage.setItem('card', JSON.stringify(card));
@@ -91,7 +96,7 @@
             
             for(var x in card){
                 cardString += index;
-                cardString += document.getElementById("aa"+x).innerHTML +" Quantity :"+ card[x] + "</br>";
+                cardString += document.getElementById("aa"+x).innerHTML +" Quantity :"+ card[x][0] + "</br>";
                 index +=1;
             }
 

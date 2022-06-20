@@ -4,21 +4,36 @@
 
 <div class="row">
     <div class="col-md-12">
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cras justo odio
-              <span class="badge badge-primary badge-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Dapibus ac facilisis in
-              <span class="badge badge-primary badge-pill">2</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Morbi leo risus
-              <span class="badge badge-primary badge-pill">1</span>
-            </li>
-          </ul>
+        <ul class="list-group" id="item-list">
+            <h3 class="text-center">Here is your list</h3>
+        </ul>
     </div>
 </div>
+
+{% endblock %}
+
+
+{% block javascript %} 
+
+    <script type="text/javascript">
+        if (localStorage.getItem('card') == null) {var card = {};}
+        else{ card = JSON.parse(localStorage.getItem('card'));}
+
+        for (item in card){
+            let product_name = card[item][1]; // accessing to names (in dictionary) 1 is used
+            let product_quantity = card[item][0]; // accessing to quantities (in dictionary) 0 is used
+            let itemString = 
+            ` 
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${product_name}  
+                    <span class="badge badge-primary badge-pill">Quantity ${product_quantity}</span>
+                </li>
+            `
+            // calling id 
+            $('#item-list').append(itemString);
+        }
+
+
+    </script>
 
 {% endblock %}
