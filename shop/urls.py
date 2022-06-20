@@ -1,12 +1,13 @@
 import imp
 from django.urls import path
-from shop.views import detail, index
+from shop.views import checkout, detail, index
 
 
 #create your urls here
 
 urlpatterns = [
     path ('', index, name = 'home'),
-    path('<int:myid>', detail, name='detail')
+    path('<int:myid>', detail, name='detail'),
+    path('checkout', checkout, name="checkout")
 
 ]

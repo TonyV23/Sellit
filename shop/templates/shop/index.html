@@ -86,14 +86,16 @@
         
         function displayAllOrdersByUser(card){
             var cardString = "";
-            cardString += "<h5>See the list of your orders</h5>";
+            cardString += "<h5>All your orders' list</h5>";
             var index = 1; // will count the number of product in popover
             
             for(var x in card){
                 cardString += index;
-                cardString += document.getElementById("aa"+x).innerHTML +"Quantity"+ card[x] + "</br>";
+                cardString += document.getElementById("aa"+x).innerHTML +" Quantity :"+ card[x] + "</br>";
                 index +=1;
             }
+
+            cardString += "<a href='/checkout' class='btn btn-primary'>Checkout</a>";
             $('[data-toggle="popover"]').popover();
             document.getElementById('card').setAttribute('data-content', cardString);
         }

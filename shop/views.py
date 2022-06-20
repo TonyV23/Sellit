@@ -25,3 +25,8 @@ def detail(request, myid): # myid to get each product
 
 
     return render(request, 'shop/detail.html', {'product':product_object})
+
+# used to checkout card button 
+def checkout(request):
+
+    return render(request, 'shop/checkout.html')
