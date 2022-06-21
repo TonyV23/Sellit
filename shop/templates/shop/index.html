@@ -23,7 +23,7 @@
                 <img src="{{product.image}}" alt="" class="card-img-top">
                 <div class="card-body">
                     <div id="aa{{ product.id }}" class="card-title">{{product.title}}</div>
-                    <div style="color:orangered" class="card-text">{{product.price}}</div>
+                    <div id="price{{ product.id }}" style="color:orangered" class="card-text">{{product.price}}</div>
                     <a href="{{ product.id }}" class="btn btn-warning">View</a>
                     <button id="{{ product.id }}" class="btn idClick btn-success">Add to card</button>
                 </div>
@@ -72,12 +72,14 @@
             // handling how much add to card btn was clicked by user
             if (card[item_id] != undefined) { // undefined means that item_id (key) hasn't yet a value
                 quantity = card[item_id][0] + 1;
-                card[item_id][0] = quantity;    
+                card[item_id][0] = quantity;
+                card[item_id][2] += parseFloat(document.getElementById('price'+item_id).innerHTML); // convert price from string into an integer    
 
             }else { 
                 quantity = 1;
+                price = parseFloat(document.getElementById('price'+item_id).innerHTML);
                 name = document.getElementById('aa'+item_id).innerHTML;
-                card[item_id] = [quantity, name];
+                card[item_id] = [quantity, name, price];
             }
             
             // registering in localStorage our card

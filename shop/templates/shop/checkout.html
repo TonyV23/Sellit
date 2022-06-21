@@ -63,23 +63,43 @@
         if (localStorage.getItem('card') == null) {var card = {};}
         else{ card = JSON.parse(localStorage.getItem('card'));}
 
+        var total_price_all_orders = 0; 
+        var total_number_all_orders = 0;  
+
         for (item in card){   
             let product_name = card[item][1]; // accessing to names (in dictionary) 1 is used
             let product_quantity = card[item][0]; // accessing to quantities (in dictionary) 0 is used
+            let product_price = card[item][2];
+            
+            total_number_all_orders += product_quantity;
+            total_price_all_orders += product_price;
+
             let itemString = 
             ` 
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     ${product_name}  
                     <span class="badge badge-primary badge-pill">Quantity ${product_quantity}</span>
+                    <span class="badge badge-warning badge-pill">Price ${product_price} FBU</span>
                 </li>
             `
             // calling id 
             $('#item-list').append(itemString);
         }
 
+        let itemNumber = 
+            ` 
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <b class="bg-danger">Total prices and quantities</b>  
+                    <span class="badge badge-danger badge-pill"> ${total_number_all_orders}</span>
+                    <span class="badge badge-danger badge-pill">Price ${total_price_all_orders} FBU</span>
+                </li>
+            `
+        // calling id 
+        $('#item-list').append(itemNumber);        
+
         // Retrieve user orders
         $('#items').val(JSON.stringify(card));
-        
+
 
     </script>
 
