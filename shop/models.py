@@ -37,8 +37,12 @@ class Order(models.Model):
     email = models.CharField(max_length=150)
     address = models.CharField(max_length=300)
     city =  models.CharField(max_length=200)
+    country = models.CharField(max_length=300)
     zipcode =  models.CharField(max_length=300)
     date_ordered = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         ordering = ['-date_ordered']
