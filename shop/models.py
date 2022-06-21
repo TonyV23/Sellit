@@ -33,6 +33,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     items = models.CharField(max_length=300)
+    price_to_be_paid = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=150)
     address = models.CharField(max_length=300)
