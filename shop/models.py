@@ -31,3 +31,15 @@ class Product(models.Model):
     class Meta:
         ordering = ['-date_added']
 
+class Order(models.Model):
+    items = models.CharField(max_length=300)
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=150)
+    address = models.CharField(max_length=300)
+    city =  models.CharField(max_length=200)
+    zipcode =  models.CharField(max_length=300)
+    date_ordered = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date_ordered']
+
