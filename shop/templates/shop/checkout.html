@@ -10,6 +10,49 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <form method="POST">
+            {% csrf_token %}    <!--  handling security -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Your email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="Avenue 28 nov">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" id="city" name="city" class="form-control" id="inputCity">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">Country</label>
+                <select id="country" name="country" class="form-control">
+                  <option selected>BURUNDI</option>
+                  <option>RWANDA</option>
+                  <option>TANZANIE</option>
+                  <option>RD CONGO</option>
+                  <option>CANADA</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" name="zipcode" id="zipcode"  class="form-control" id="inputZip">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Order</button>
+          </form>
+    </div>
+</div>
+
 {% endblock %}
 
 
@@ -19,7 +62,7 @@
         if (localStorage.getItem('card') == null) {var card = {};}
         else{ card = JSON.parse(localStorage.getItem('card'));}
 
-        for (item in card){
+        for (item in card){   
             let product_name = card[item][1]; // accessing to names (in dictionary) 1 is used
             let product_quantity = card[item][0]; // accessing to quantities (in dictionary) 0 is used
             let itemString = 
