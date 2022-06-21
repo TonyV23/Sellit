@@ -29,6 +29,7 @@ def detail(request, myid): # myid to get each product
 # used to checkout card button 
 def checkout(request):
     if request.method == "POST" :
+        items = request.POST.get('items')
         name = request.POST.get('name')
         email = request.POST.get('email')
         address = request.POST.get('address')
@@ -36,7 +37,7 @@ def checkout(request):
         country = request.POST.get('country')
         zipcode = request.POST.get('zipcode')
     
-        user_order = Order(name=name, email= email, address=address, city=city, country=country, zipcode=zipcode)
+        user_order = Order(items=items, name=name, email= email, address=address, city=city, country=country, zipcode=zipcode)
         user_order.save()
 
     return render(request, 'shop/checkout.html')
