@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Product, Order
 from django.core.paginator import Paginator
 
@@ -43,4 +43,15 @@ def checkout(request):
         # save userData ordering in database
         user_order.save()
 
+        # once the order is saved in the database, the user is redirected to the confirmation page
+        return redirect('confirmation')
+
     return render(request, 'shop/checkout.html')
+
+#used for confirmation page after user ordered
+def confirmation(request):
+    user_infos = Order.objects.all()[:1]
+    for user_info in user_infos:
+        user_info_name = user_info.name
+
+    return render(request, 'shop/confirmation.html', {"name" : user_info_name}) 
